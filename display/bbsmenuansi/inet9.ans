@@ -1,0 +1,40 @@
+@CLS@
+
+@CLS@
+ษออออออออออออออออออออออออออออออออออออออออออออออออออป
+@CLS@
+บ                                                  บ
+@CLS@
+บ Internet Menu            Spy Visits Spy BBS      บ
+@CLS@
+บ                                                  บ
+@CLS@
+ฬออออออออออออออออออออออออออออออออออออออออออออออออออน
+@CLS@
+บ             [T] Telnet Outbound                  บ
+@CLS@
+บ             [F] FTP Outbound                     บ
+@CLS@
+บ                                                  บ
+@CLS@
+บ             [?] Info on Telnet and  FTP          บ
+@CLS@
+บ             [Q] Quit to Previous Menu            บ
+@CLS@
+ศออออออออออออออออออออออออออออออออออออออออออออออออออผ
+@CLS@
+
+@CLS@
+ You are about to establish a connection to an Internet host.
+@CLS@
+ The performance, reliability, availability and content of Internet
+@CLS@
+ hosts is beyond @SYSTEM.BBSNAME@'s control.
+@CLS@
+
+@CLS@
+ Conference : @CONF.NAME@
+@CLS@
+ Time Left  : @USER.TIMELEFTTODAY@
+@CLS@
+ Command >>  
