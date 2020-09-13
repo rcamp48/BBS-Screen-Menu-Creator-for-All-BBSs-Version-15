@@ -1068,7 +1068,8 @@ INPUT "Color # 1 Foreground [From 0 to 15] : ", color1foreground
 PRINT
 COLOR color1background, color1foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
+PRINT
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1080,7 +1081,7 @@ INPUT "Color # 2 Foreground [From 0 to 15] : ", color2foreground
 PRINT
 COLOR color2background, color2foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1092,7 +1093,7 @@ INPUT "Color # 3 Foreground [From 0 to 15] : ", color3foreground
 PRINT
 COLOR color3background, color3foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1104,7 +1105,7 @@ INPUT "Color # 4 Foreground [From 0 to 15] : ", color4foreground
 PRINT
 COLOR color4background, color4foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1116,7 +1117,7 @@ INPUT "Color # 5 Foreground [From 0 to 15] : ", color5foreground
 PRINT
 COLOR color5background, color5foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1128,7 +1129,7 @@ INPUT "Color # 6 Foreground [From 0 to 15] : ", color6foreground
 PRINT
 COLOR color6background, color6foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1145,14 +1146,14 @@ answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO etry7
 etry8:
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 GOSUB background
 INPUT "Color # 8 Background [From 0 to  7] : ", color7background
 INPUT "Color # 8 Foreground [From 0 to 15] : ", color7foreground
 PRINT
 COLOR color8background, color8foreground
 PRINT "[------------------]"
-COLOR 0, 7
+COLOR 7, 0
 PRINT "Is This acceptable [Y]es or [N]o : ", answer$
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
@@ -1161,7 +1162,7 @@ RETURN
 whatyouget:
 CLS
 PRINT
-COLOR 0, 7
+COLOR 7, 0
 PRINT
 PRINT "This is what you get for colors [Is it still acceptable] [Y] or [N] : "
 
@@ -1209,7 +1210,7 @@ COLOR usercolorentry_g1, usercolorentry_t1
 
 PRINT "[------------------------------------------------------]"
 
-COLOR 0, 7
+COLOR 7, 0
 PRINT
 PRINT "Acceptable ???? [Y]es or [N]o : "
 PRINT
@@ -1218,6 +1219,7 @@ answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO inputscreen1
 RETURN
 randomscreen:
+RANDOMIZE TIMER
 randoms = INT(RND(1) * 7) + 1
 IF randoms = 1 THEN
     g = color1background
