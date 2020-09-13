@@ -113,7 +113,7 @@ COLOR 7, 0
 setup:
 CLS
 PRINT
-PRINT "BBS Menu Color Scheme Creator Version 10 Final Version RC1"
+PRINT "BBS Menu Color Scheme Creator Version 13 Final Version RC1"
 PRINT "Written by Russ Campbell Updated September 12 2020"
 PRINT
 PRINT "First of all design your menus in straight text no colors, etc"
@@ -176,6 +176,7 @@ PRINT "Enter your own colors [Y]es  or [N]o  [Defaults to [Y]es   : "
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO inputscreen
+prompts:
 CLS
 PRINT
 PRINT "This section will either load or create a new user data file with all used"
@@ -187,9 +188,10 @@ PRINT "Load or [C]reate User Data file or [X]xit Program"
 PRINT "[No extenders Please !!!!!! ] : "
 answer$ = INPUT$(1)
 database$ = UCASE$(answer$)
-IF answer$ = "L" THEN GOTO filen
-IF answer$ = "C" THEN GOTO back
-IF answer$ = "X" THEN GOTO finish
+IF database$ = "L" THEN GOTO filen
+IF database$ = "C" THEN GOTO back
+IF database$ = "X" THEN GOTO finish
+GOTO prompts
 filen:
 PRINT
 INPUT "Filename  [Please no extenders I will put them in ] : ", filename$
@@ -198,16 +200,34 @@ IF database$ = "L" THEN
     GOSUB load
 END IF
 back:
+back1:
 GOSUB background
+INPUT "Outside Lines Background [From 0 to  7] : ", usercolorentry_g1
+INPUT "Outside Lines Foreground [From 0 to 15] : ", usercolorentry_t1
 PRINT
-INPUT "Enter your background color for the outer lines : ", usercolorentry_g1$
-INPUT "Enter your foreground color for the inner lines : ", usercolorentry_t1$
+COLOR usercolorentry_t1, usercolorentry_g1
+
+PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
+PRINT
+PRINT "Is This acceptable [Y]es or [N]o : "
+answer$ = INPUT$(1)
+answer$ = UCASE$(answer$)
+IF answer$ = "N" THEN GOTO back1
+back2:
 GOSUB background
-PRINT "Enter your background color"
-INPUT "for the inner '[' and outer ']' that surround commands : ", usercolorentry_g2$
-PRINT "Enter your foreground color"
-INPUT "for the inner '[' and outer ']' that surround commands : ", usercolorentry_t2$
+INPUT "Brackets  Background [From 0 to  7] : ", usercolorentry_g2
+INPUT "Brackets  Foreground [From 0 to 15] : ", usercolorentry_t2
 PRINT
+PRINT
+COLOR usercolorentry_t2, usercolorentry_g2
+PRINT "[A]";: COLOR 7, 0: COLOR 7, 0
+PRINT
+PRINT
+PRINT "Is This acceptable [Y]es or [N]o : "
+answer$ = INPUT$(1)
+answer$ = UCASE$(answer$)
+IF answer$ = "N" THEN GOTO back2
+
 CLS
 PRINT
 PRINT "Do you wish to have multi colors randomly chosen for everything else"
