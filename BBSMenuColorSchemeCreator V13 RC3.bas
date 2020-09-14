@@ -90,7 +90,7 @@ PRINT "%                 BBS Screen Creator Written By Russ Campbell            
 LOCATE 12, 24
 PRINT "%                                                                              %"
 LOCATE 13, 24
-PRINT "%                   Final Version 11 Release Candidate RC2                     %"
+PRINT "%                   Final Version 13 Release Candidate RC2                     %"
 LOCATE 14, 24
 PRINT "%                                                                              %"
 LOCATE 15, 24
@@ -171,11 +171,25 @@ CLS
 PRINT
 inputscreen1:
 CLS
+PRINT "Do you wish to use pre-selected colors or use your own sets "
+PRINT "Of color selections: (10) color schemes can be customised."
+
+PRINT "This sction is for entering your own color schemes , it is  "
+PRINT "for selecting either Preselected or your own colors."
 PRINT
-PRINT "Enter your own colors [Y]es  or [N]o  [Defaults to [Y]es   : "
+PRINT "If you want random colors, choose [N]o as your answer."
+PRINT
+PRINT "However if you want to enter your own colors , then enter"
+PRINT " N as your choice of color selection"
+PRINT
+PRINT "Do you wuish to use random colors? [Y]es  or [N]o  [Defaults to [N]o   "
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO inputscreen
+IF answer$ = "N" THEN randome$ = "N"
+IF answer$ = "" THEN randome$ = "N"
+IF answer$ = "N" THEN GOTO prompts
+IF answer$ = "Y" THEN randome$ = "Y": GOTO inputscreen
+GOTO inputscreen1
 prompts:
 CLS
 PRINT
@@ -185,7 +199,6 @@ PRINT "of loading a saved file or creating a totally new filename. You do not ha
 PRINT "to write over any existing files, and the program will be fool proof."
 PRINT
 PRINT "Load or [C]reate User Data file or [X]xit Program"
-PRINT "[No extenders Please !!!!!! ] : "
 answer$ = INPUT$(1)
 database$ = UCASE$(answer$)
 IF database$ = "L" THEN GOTO filen
@@ -220,14 +233,16 @@ INPUT "Brackets  Foreground [From 0 to 15] : ", usercolorentry_t2
 PRINT
 PRINT
 COLOR usercolorentry_t2, usercolorentry_g2
-PRINT "[A]";: COLOR 7, 0: COLOR 7, 0
-PRINT
+PRINT "[";: COLOR 7, 0: COLOR 7, 0
+PRINT "A";
+COLOR usercolorentry_t2, usercolorentry_g2
+PRINT "]";: COLOR 7, 0: COLOR 7, 0
 PRINT
 PRINT "Is This acceptable [Y]es or [N]o : "
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO back2
-
+rand:
 CLS
 PRINT
 PRINT "Do you wish to have multi colors randomly chosen for everything else"
@@ -237,7 +252,10 @@ PRINT
 PRINT "Choose either [R]andom or [U]ser Set Patterns : "
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
-IF answer$ = "R" THEN GOTO inputscreen
+IF answer$ = "R" THEN random$ = "Y": GOTO inputscreen
+IF answer$ = "U" THEN randome$ = "N": GOTO combos
+GOTO rand
+combos:
 CLS
 PRINT
 PRINT "Please enter 8 different color combinations for the display , be creative : "
@@ -251,14 +269,13 @@ DO WHILE INKEY$ = ""
 LOOP
 GOSUB enteryourbackground
 GOSUB whatyouget
-GOSUB randomscreen
+GOSUB randomchoice
 GOSUB create
 
 PRINT "Press any key to continue...."
 DO WHILE INKEY$ = ""
 LOOP
 inputscreen:
-
 CLEAR
 CLS
 PRINT "Demo files that are available are: "
@@ -288,13 +305,13 @@ displays:
 CLS
 PRINT "Output display [A] Ansi [B] Wildcat BBS  [C] PCboard BBS "
 PRINT "Output Display [D] Syncronet BBS  [E] Mystic BBS : " 'which BBS display the user wants
-display$ = INPUT$(1)
-display$ = UCASE$(display$)
-IF display$ = "A" THEN display = "ansi": GOTO menu
-IF display$ = "B" THEN display = "wc8": GOTO menu ' select display coding by what the user types in
-IF display$ = "C" THEN display = "pcb": GOTO menu
-IF display$ = "D" THEN display = "syn": GOTO menu
-IF display$ = "E" THEN display = "mys": GOTO menu
+displaychoice$ = INPUT$(1)
+displaychoice$ = UCASE$(displaychoice$)
+IF displaychoice$ = "A" THEN display = "ansi": GOTO menu
+IF displaychoice$ = "B" THEN display = "wc8": GOTO menu ' select display coding by what the user types in
+IF displaychoice$ = "C" THEN display = "pcb": GOTO menu
+IF displaychoice$ = "D" THEN display = "syn": GOTO menu
+IF displaychoice$ = "E" THEN display = "mys": GOTO menu
 GOTO displays
 startit:
 
@@ -469,7 +486,7 @@ IF display = "wc8" THEN
     CLS
     PRINT #2, "@0" + "0@" + "@CLS@"
     ' set background to black
-    COLOR 0, 0
+    COLOR 7, 0
 END IF
 IF display = "pcb" THEN
     ' clear screen
@@ -481,51 +498,68 @@ IF display = "syn" THEN
     ' clear screen
     CLS
     ' set background to black
-    COLOR 0, 0
+    COLOR 7, 0
 END IF
 IF display = "mys" THEN
     ' clear screen
     CLS
     ' set background to black
-    COLOR 0, 0
+    COLOR 7, 0
 END IF
 DO UNTIL EOF(1)
     LINE INPUT #1, lnumber
-    FOR i = 1 TO LEN(lnumber)
-        b = MID$(lnumber, i, 1) ' Calculates the ascii value of every character in the line
+    IF randome$ = "Y" THEN GOSUB trulyrandom
+    IF randome$ = "N" THEN GOSUB randomchoice
 
+    FOR i = 1 TO LEN(lnumber)
+
+        b = MID$(lnumber, i, 1) ' Calculates the ascii value of every character in the line
         IF display = "wc8" THEN
             GOSUB specialcharacters3
             GOSUB specialcharacters2
-            GOSUB displ
             IF flag$ = "Y1" THEN
-                colorchange = 1
-            ELSEIF flag$ = "Y2" THEN
                 GOSUB colorchange
-                colorchange = colorchange + 1
+                COLOR t1, g1
+                GOSUB displ
+                IF colorchanges = 1 THEN
+                    PRINT #2, backgroundcolorbbs + foregroundcolorbbs + b;
+                    PRINT b;
+                ELSEIF colorchanges = 0 THEN
+                    PRINT #2, b;
+                    PRINT b;
+                    colorchanges = 0
+                END IF
             END IF
-            IF colorchange > 0 THEN
-                PRINT #2, backgroundcoloransi + foregroundcoloransi + b;
-                PRINT b;
-                colorchange = 0
+            IF flag$ = "Y2" THEN
+                GOSUB colorchange
+                COLOR t1, g1
+                GOSUB displ
+                IF colorchanges = 1 THEN
+                    PRINT #2, backgroundcolorbbs + foregroundcolorbbs + b;
+                    PRINT b;
+                ELSEIF colorchanges = 0 THEN
+                    PRINT #2, b;
+                    PRINT b;
+                    colorchanges = 0
+                END IF
+            END IF
+            IF flag$ = "Y3" THEN
+                GOSUB colorchange
+                COLOR t, g
+                IF colorchanges = 1 THEN
+                    PRINT #2, backgroundcolorbbs + foregroundcolorbbs + b;
+                    PRINT b;
+                    colorchanges = 0
+                END IF
+                IF colorchanges = 0 THEN
+                    PRINT #2, b;
+                    PRINT b;
+                END IF
             END IF
         END IF
     NEXT i
     PRINT #2, ""
     PRINT
-    IF flag$ = "Y1" THEN
-        colorchange_y = 1
-        g1 = usercolorentry_g1
-        t1 = usercolorentry_t1
-        x = y
-        COLOR y, x
-    ELSEIF flag$ = "Y2" THEN
-        colorchange_y = 1
-        g2 = usercolorentry_g2
-        t2 = usercolorentry_t2
-        x = y
-        COLOR y, x
-    END IF
 LOOP
 fini:
 closeit:
@@ -577,7 +611,7 @@ PRINT "on Facebook at many of the groups"
 PRINT "I am in , or email me at"
 PRINT "rcamp48@rogers.com"
 PRINT
-PRINT "Thank you for using BBS Menu Color Scheme Creator 11 RC2"
+PRINT "Thank you for using BBS Menu Color Scheme Creator 13 RC2"
 PRINT
 END
 pick:
@@ -773,29 +807,21 @@ IF b = CHR$(94) OR b = CHR$(43) OR b = CHR$(37) OR b = CHR$(126) OR b = CHR$(45)
     flag$ = "Y1"
 ELSEIF b = CHR$(91) OR b = CHR$(93) THEN
     flag$ = "Y2"
+ELSE
+    flag$ = "Y3"
 END IF
 RETURN
 colorchange:
 IF flag$ = "Y1" THEN
     g1 = usercolorentry_g1
     t1 = usercolorentry_t1
-    x = g1
-    y = t1
-    COLOR y1, x1
-    colorchanges = 1
 ELSEIF flag$ = "Y2" THEN
     g2 = usercolorentry_g2
     t2 = usercolorentry_t2
-
-    x = g2
-    y = t2
-ELSE
-    g = x
-    t = y
-    COLOR y, x
-    colorchanges = 1
+ELSEIF flag$ = "Y3" THEN
+    g = usercolorentry_g
+    t = usercolorentry_t
 END IF
-
 RETURN
 
 
@@ -914,7 +940,7 @@ GOSUB background
 INPUT "Color # 6 Background [From 0 to  7] : ", color6background
 INPUT "Color # 6 Foreground [From 0 to 15] : ", color6foreground
 PRINT
-COLOR color6foreground, color6foreground
+COLOR color6foreground, color6background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
 PRINT "Is This acceptable [Y]es or [N]o : "
@@ -1007,41 +1033,58 @@ answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO inputscreen1
 GOSUB create
 RETURN
-randomscreen:
+randomchoice:
 RANDOMIZE TIMER
 randoms = INT(RND(1) * 7) + 1
 IF randoms = 1 THEN
-    g = color1background
-    t = color1foreground
+    usercolorentry_g = color1background
+    usercolorentry_t = color1foreground
 ELSEIF randoms = 2 THEN
-    g = color2background
-    t = color2foreground
+    usercolorentry_g = color2background
+    usercolorentry_t = color2foreground
 ELSEIF randoms = 3 THEN
-    g = color3background
-    t = color3foreground
+    usercolorentry_g = color3background
+    usercolorentry_t = color3foreground
 ELSEIF randoms = 4 THEN
-    g = color4background
-    t = color4foreground
+    usercolorentry_g = color4background
+    usercolorentry_t = color4foreground
 ELSEIF randoms = 5 THEN
-    g = color5background
-    t = color5foreground
+    usercolorentry_g = color5background
+    usercolorentry_t = color5foreground
 ELSEIF randoms = 6 THEN
-    g = color6background
-    t = color6foreground
+    usercolorentry_g = color6background
+    usercolorentry_t = color6foreground
 ELSEIF randoms = 7 THEN
-    g = color7background
-    t = color7foreground
+    usercolorentry_g = color7background
+    usercolorentry_t = color7foreground
 ELSEIF randoms = 0 THEN
-    g = color8background
-    t = color8foreground
+    usercolorentry_g = color8background
+    usercolorentry_t = color8foreground
 END IF
+RETURN
+trulyrandom:
+g1 = INT(RND(1) * 7) + 1
+t1 = INT(RND(1) * 15) + 1
+g2 = INT(RND(1) * 7) + 1
+t2 = INT(RND(1) * 15) + 1
+g = INT(RND(1) * 7) + 1
+t = INT(RND(1) * 15) + 1F
+IF g = t THEN GOTO trulyrandom
+IF g1 = t1then GOTO trulyrandom
+IF g2 = t2 THEN GOTO trulyrandom
+IF g = g1 OR g = g2 THEN GOTO trulyrandom
+IF t = t1 OR t = t2 THEN GOTO trulyrandom
 RETURN
 create:
 CLS
 PRINT
 PRINT "Do you wish to save a configuration file for later on [Y] or [N] : "
-answer$ = UCASE$(answer$)
+answer = UCASE$(answer$)
 IF answer$ = "N" THEN GOTO inputscreen
+PRINT
+PRINT "Enter Data for program."
+PRINT
+INPUT "Enter Filename [No extender :  ", files$
 PRINT
 PRINT "Saving data............"
 PRINT
