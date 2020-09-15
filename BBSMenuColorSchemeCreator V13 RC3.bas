@@ -176,12 +176,14 @@ PRINT "Do you wish to have multi colors randomly chosen for everything"
 PRINT "or user set colors for the entire area that makes up all of the "
 PRINT "the menus. This can all be used in either displays or menus"
 PRINT
-PRINT "Choose [L]oad or [C]reate new Color Patterns"
+PRINT "Choose [T]est Program [L]oad Color Patterns or [C]reate new Color Patterns"
+PRINT "Choose [X] to exit program"
 answer = INPUT$(1)
 answer = UCASE$(answer)
 IF answer = "C" THEN GOTO inputscreen1
 IF answer = "L" THEN GOSUB load
-IF answer = "R" THEN GOTO inputscreen
+IF answer = "T" THEN GOTO inputscreen
+IF answer = "X" THEN GOTO finish
 GOTO rand
 inputscreen1:
 CLS
@@ -422,11 +424,6 @@ pcbmenu = "c:\display\bbsmenupcb\" + file4
 synmenu = "c:\display\bbsmenusyncro\" + file5
 mysmenu = "C:\display\bbsmenumystic\" + file6
 asciipromptmenu = "c:\display\bbsmenuascii\" + file7
-
-PRINT bbsdisplay(g1, t1, g2, t2, g, t)
-
-DO WHILE INKEY$ = ""
-LOOP
 
 IF menuchoice = "D" THEN
     contlne = 0
@@ -786,7 +783,6 @@ PRINT " Create another screen ? [Defaults to [Y]es : "
 answer = INPUT$(1)
 answer = UCASE$(answer)
 IF answer = "N" THEN
-    GOSUB create
     GOTO finish
 ELSE
     contlne = 0
