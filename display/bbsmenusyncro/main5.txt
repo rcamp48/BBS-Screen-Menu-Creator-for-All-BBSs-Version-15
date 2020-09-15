@@ -1,21 +1,19 @@
-
-0kÕ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2m¸
-2m³2m 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1yS1yp1yy1y 1yV1yi1ys1yi1yt1ys1y 1yS1yp1yy1y 1yB1yB1yS1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1yM1ya1yi1yn1y 1yM1ye1yn1yu1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y³
-2mÆ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mµ
-2m³2m 4c 4c[7kB4c]7k 4cB4cu4cl4cl4ce4ct4ci4cn4c 4cM4ce4cn4cu4c 4c 4c 4c 4c 4c 4c[7kP4c]7k 4cP4ca4cg4ce4c 4cS4cy4cs4co4cp4c 4cF4co4cr4c 4cC4ch4ca4ct4c 4c 4c 4c 4c[7kG4c]7k 4cG4co4co4cd4cb4cy4ce4c 4c 4c 4c 4c 4c 4c 4c 4c 4c 4c³
-2m³2m 2m 2m[7kC2m]7k 2mC2mo2mm2mm2me2mn2mt2ms2m 2mT2mo2m 2mS2my2ms2mo2mp2m 2m 2m[7kQ2m]7k 2mQ2mu2me2ms2mt2mi2mo2mn2ma2mi2mr2me2m 2mM2me2mn2mu2m 2m 2m 2m 2m 2m 2m[7kH2m]7k 2mH2me2ml2mp2m 2mM2me2mn2mu2m 2m 2m 2m 2m 2m 2m 2m 2m³
-2m³2m 7k 7k[7kD7k]7k 7kO7kn7kl7ki7kn7ke7k 7kG7ka7km7ke7ks7k 7kM7ke7kn7ku7k 7k 7k[7kS7k]7k 7kS7kt7ka7kt7ks7k 7kO7kn7k 7kB7kB7kS7k 7k 7k 7k 7k 7k 7k 7k 7k 7k 7k 7k[7kJ7k]7k 7kJ7ko7ki7kn7k 7kC7ko7kn7kf7ke7kr7ke7kn7kc7ke7k 7k 7k³
-2m³2m 5g 5g[7kF5g]7k 5gF5gi5gl5ge5g 5gM5ge5gn5gu5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g[7kU5g]7k 5gU5gs5ge5gr5g 5gL5gi5gs5gt5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g[7kY5g]7k 5gY5go5gu5gr5g 5gS5ge5gt5gt5gi5gn5gg5gs5g 5g 5g 5g 5g³
-2m³2m 2m 2m[7kI2m]7k 2mI2mn2mi2mt2mi2ma2ml2m 2mW2me2ml2mc2mo2mm2me2m 2m 2m 2m 2m[7kV2m]7k 2mV2me2mr2mi2mf2my2m 2mU2ms2me2mr2m 2m 2m 2m 2m 2m 2m 2m 2m 2m 2m 2m 2m[7k?2m]7k 2mC2mo2mm2mm2ma2mn2md2m 2mH2me2ml2mp2m 2m 2m 2m 2m 2m³
-2m³2m 5g 5g[7kL5g]7k 5gL5gi5gv5ge5g 5gC5gh5ga5gt5g 5g/5g 5gU5gs5ge5gr5gs5g 5g 5g[7kW5g]7k 5gW5gh5go5g 5gI5gs5g 5gO5gn5gl5gi5gn5ge5g 5g 5g 5g 5g 5g 5g 5g 5g 5g 5g[7kM5g]7k 5gM5ge5gs5gs5ga5gg5ge5g 5gM5ge5gn5gu5g 5g 5g 5g 5g 5g³
-2m³2m 6b 6b[7kN6b]7k 6bN6be6bw6bs6b 6bL6be6bt6bt6be6br6b 6b 6b 6b 6b 6b 6b 6b 6b[7kZ6b]7k 6bP6ba6bg6be6b 6bO6bn6bl6bi6bn6be6b 6bU6bs6be6br6b 6b 6b 6b 6b 6b 6b 6b[7kX6b]7k 6bI6bn6bt6be6br6bn6be6bt6b 6bM6be6bn6bu6b 6b 6b 6b 6b³
-2mÆ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mµ
-2m³2m 1y 1y[7k11y]7k 1yR1yu1yn1y 1yS1yc1yr1ye1ye1yn1y 1yM1ya1yk1ye1yr1y 1y 1y 1y[7k21y]7k 1yR1yu1yn1y 1yC1yo1yn1yf1yi1yg1y 1yE1yd1yi1yt1yo1yr1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y 1y³
-2mÔ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2mÍ2m¾
-@0007@
-
-
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³               Spy Visits Spy BBS             Main Menu                  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³  [B] Bulletin Menu      [P] Page Sysop For Chat    [G] Goodbye          ³
+³  [C] Comments To Sysop  [Q] Questionaire Menu      [H] Help Menu        ³
+³  [D] Online Games Menu  [S] Stats On BBS           [J] Join Conference  ³
+³  [F] File Menu          [U] User List              [Y] Your Settings    ³
+³  [I] Initial Welcome    [V] Verify User            [?] Command Help     ³
+³  [L] Live Chat / Users  [W] Who Is Online          [M] Message Menu     ³
+³  [N] News Letter        [Z] Page Online User       [X] Internet Menu    ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³  [1] Run Screen Maker   [2] Run Config Editor                           ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+@07@
     Conference : @CONF.NAME@
     Time Left  : @USER.TIMELEFTTODAY@    
     
     Main Menu Command >> 
+@07@
