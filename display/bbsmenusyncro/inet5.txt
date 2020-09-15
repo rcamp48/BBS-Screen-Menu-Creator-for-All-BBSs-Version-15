@@ -1,14 +1,14 @@
-ÖÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·
-º                                                  º
-º Internet Menu    Spy Visits Spy BBS              º
-º                                                  º
-ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶
-º             [T] Telnet Outbound                  º
-º             [F] FTP Outbound                     º
-º                                                  º
-º             [?] Info on Telnet and  FTP          º
-º             [Q] Quit to Previous Menu            º
-ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ½
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³                                                  ³
+³ Internet Menu    Spy Visits Spy BBS              ³
+³                                                  ³
+ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³             [T] Telnet Outbound                  ³
+³             [F] FTP Outbound                     ³
+³                                                  ³
+³             [?] Info on Telnet and  FTP          ³
+³             [Q] Quit to Previous Menu            ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 @07@
  You are about to establish a connection to an Internet host.
  The performance, reliability, availability and content of Internet
