@@ -176,12 +176,13 @@ PRINT "Do you wish to have multi colors randomly chosen for everything"
 PRINT "or user set colors for the entire area that makes up all of the "
 PRINT "the menus. This can all be used in either displays or menus"
 PRINT
-PRINT "Choose [R]andom or [U]ser Set Patterns or [T]est Screens or E[X]it Program : "
+PRINT "Choose [R]andom or [U]ser Set Patterns or"
+PRINT "[F]ixed Display Screens or E[X]it Program : "
 answer$ = INPUT$(1)
 answer$ = UCASE$(answer$)
 ran$ = answer$
-IF ran$ = "R" THEN GOTO inputscreen
-IF ran$ = "T" THEN GOTO inputscreen
+IF ran$ = "R" THEN GOSUB randomchoices: GOTO inputscreen
+IF ran$ = "F" THEN GOSUB fixed: GOTO inputscreen
 IF ran$ = "U" THEN GOTO inputscreen1
 IF ran$ = "X" THEN GOTO finish
 GOTO rand
@@ -204,7 +205,7 @@ answer$ = UCASE$(answer$)
 IF answer$ = "N" THEN randome$ = "N"
 IF answer$ = "" THEN randome$ = "N": GOTO prompts
 IF answer$ = "N" THEN GOTO prompts
-IF answer$ = "Y" THEN GOTO inputscreen
+IF answer$ = "Y" THEN GOSUB randomchoices: GOTO inputscreen
 GOTO inputscreen1
 prompts:
 CLS
@@ -293,20 +294,7 @@ IF answer$ = "N" THEN GOTO back3
 RETURN
 
 inputscreen:
-IF ran$ = "R" THEN
-    trulyrandom:
-    g1 = INT(RND(1) * 7) + 1
-    t1 = INT(RND(1) * 15) + 1
-    g2 = INT(RND(1) * 7) + 1
-    t2 = INT(RND(1) * 15) + 1
-    g = INT(RND(1) * 7) + 1
-    t = INT(RND(1) * 15) + 1
-    IF g = t THEN GOTO trulyrandom
-    IF g1 = t1 THEN GOTO trulyrandom
-    IF g2 = t2 THEN GOTO trulyrandom
-    IF g = g1 OR g = g2 THEN GOTO trulyrandom
-    IF t = t1 OR t = t2 THEN GOTO trulyrandom
-END IF
+
 
 CLS
 PRINT "Demo files that are available are: "
@@ -402,8 +390,14 @@ IF pick = 4 THEN
     verticalline = CHR$(179)
 END IF
 RETURN
-
-
+fixed:
+g1 = 2
+t1 = 14
+g2 = 4
+t2 = 13
+g = 7
+t = 15
+RETURN
 
 
 '----------------------------------------------------------------------------------------------------------------------------
@@ -537,6 +531,7 @@ IF display = "mystic" THEN
     ' set background to black
     COLOR 7, 0
 END IF
+
 DO UNTIL EOF(1)
     LINE INPUT #1, lnumber
 
@@ -810,7 +805,6 @@ PRINT " Create another screen ? [Defaults to [Y]es : "
 answer = INPUT$(1)
 answer = UCASE$(answer)
 IF answer = "N" THEN
-    GOSUB create
     GOTO finish
 ELSE
     contlne = 0
@@ -1054,21 +1048,21 @@ RETURN
 
 colorchange:
 IF flag$ = "Y1" THEN
-    g1 = 5
-    t1 = 14
+    g1 = g1
+    t1 = t1
     colorchanges = 1
 ELSEIF flag$ = "Y2" THEN
-    g2 = 6
-    t2 = 13
+    g2 = g2
+    t2 = t2
     colorchanges = 1
 ELSEIF flag$ = "Y3" THEN
-    g = 4
-    t = 7
+    g = g
+    t = t
 
     colorchanges = 1
 ELSE
-    g = 4
-    t = 7
+    g = g
+    t = t
     colorchanges = 0
 END IF
 RETURN
@@ -1355,4 +1349,19 @@ INPUT #4, g
 INPUT #4, t
 CLOSE #4
 RETURN
+randomchoices:
+RANDOMIZE TIMER
+trulyrandom:
+g1 = INT(RND(1) * 7) + 1
+t1 = INT(RND(1) * 15) + 1
+g2 = INT(RND(1) * 7) + 1
+t2 = INT(RND(1) * 15) + 1
+g = INT(RND(1) * 7) + 1
+t = INT(RND(1) * 15) + 1
+IF g = t THEN GOTO trulyrandom
+IF g1 = t1 THEN GOTO trulyrandom
+IF g2 = t2 THEN GOTO trulyrandom
+IF g = g1 OR g = g2 THEN GOTO trulyrandom
+IF t = t1 OR t = t2 THEN GOTO trulyrandom
 
+RETURN
