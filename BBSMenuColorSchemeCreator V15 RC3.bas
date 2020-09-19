@@ -21,7 +21,8 @@ DIM pcbmenu AS STRING 'PC Board variable used as the PcB BBS menu display for ou
 DIM synmenu AS STRING 'Syncronet variable used as the Syncronet Menu Display for output
 DIM mysmenu AS STRING 'Mystic variable
 DIM mysdisp AS STRING 'Mystic variable
-
+DIM filess AS STRING
+DIM fnames AS STRING
 'above variables are all string variables that are used for storing different information that in the
 'Wildcat, Winserver, Ascii, and Ansi screens that are either read in , or written out to different filenames
 'in my program. The *120, or *16 etc are just string lenghths.
@@ -79,6 +80,8 @@ DIM menuchoice AS STRING
 DIM flag AS STRING
 DIM verticalline AS STRING
 DIM display AS STRING
+DIM ran AS STRING
+DIM randome AS STRING
 _FULLSCREEN
 CLS
 SCREEN 12
@@ -90,7 +93,7 @@ PRINT "%                 BBS Screen Creator Written By Russ Campbell            
 LOCATE 12, 24
 PRINT "%                                                                              %"
 LOCATE 13, 24
-PRINT "%                   Final Version 15 Release Candidate RC2                     %"
+PRINT "%                   Final Version 15 Release Candidate RC4                     %"
 LOCATE 14, 24
 PRINT "%                                                                              %"
 LOCATE 15, 24
@@ -108,7 +111,7 @@ PRINT "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DO WHILE INKEY$ = ""
 LOOP
 
-_FULLSCREEN
+
 COLOR 7, 0
 setup:
 CLS
@@ -139,7 +142,6 @@ PRINT ""
 PRINT "Press any key to continue..."
 DO WHILE INKEY$ = ""
 LOOP
-_FULLSCREEN
 CLS
 PRINT
 PRINT " ^-------------------------------------------------+"
@@ -178,13 +180,13 @@ PRINT "the menus. This can all be used in either displays or menus"
 PRINT
 PRINT "Choose [R]andom or [U]ser Set Patterns or"
 PRINT "[F]ixed Display Screens or E[X]it Program : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-ran$ = answer$
-IF ran$ = "R" THEN GOSUB randomchoices: GOTO inputscreen
-IF ran$ = "F" THEN GOSUB fixed: GOTO inputscreen
-IF ran$ = "U" THEN GOTO inputscreen1
-IF ran$ = "X" THEN GOTO finish
+answer = UCASE$(INPUT$(1))
+
+ran = answer
+IF ran = "R" THEN GOSUB randomchoices: GOTO inputscreen
+IF ran = "F" THEN GOTO inputscreen
+IF ran = "U" THEN GOTO inputscreen1
+IF ran = "X" THEN GOTO finish
 GOTO rand
 inputscreen1:
 CLS
@@ -200,12 +202,12 @@ PRINT "However if you want to enter your own colors , then enter"
 PRINT " N as your choice of color selection"
 PRINT
 PRINT "Do you wish to use random colors? [Y]es  or [N]o  [Defaults to [N]o   "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN randome$ = "N"
-IF answer$ = "" THEN randome$ = "N": GOTO prompts
-IF answer$ = "N" THEN GOTO prompts
-IF answer$ = "Y" THEN GOSUB randomchoices: GOTO inputscreen
+answer = UCASE$(INPUT$(1))
+
+IF answer = "N" THEN randome = "N"
+IF answer = "" THEN randome = "N": GOTO prompts
+IF answer = "N" THEN GOTO prompts
+IF answer = "Y" THEN GOSUB randomchoices: GOTO inputscreen
 GOTO inputscreen1
 prompts:
 CLS
@@ -216,15 +218,15 @@ PRINT "of loading a saved file or creating a totally new filename. You do not ha
 PRINT "to write over any existing files, and the program will be fool proof."
 PRINT
 PRINT "[L]oad or [C]reate User Data file or [X]xit Program"
-answer$ = INPUT$(1)
-database$ = UCASE$(answer$)
-IF database$ = "L" THEN GOTO filen
-IF database$ = "C" THEN GOTO combos
-IF database$ = "X" THEN GOTO finish
+answer = UCASE$(INPUT$(1))
+
+IF answer = "L" THEN GOTO filen
+IF answer = "C" THEN GOTO combos
+IF answer = "X" THEN GOTO finish
 GOTO prompts
 filen:
 PRINT
-IF database$ = "L" THEN
+IF answer = "L" THEN
     GOSUB load
     GOTO inputscreen
 END IF
@@ -241,8 +243,7 @@ PRINT "Press any key...."
 DO WHILE INKEY$ = ""
 LOOP
 GOSUB back
-GOSUB create
-GOTO inputscreen
+GOSUB inputscreen
 GOSUB enteryourbackground
 GOSUB whatyouget
 GOSUB randomchoice
@@ -258,10 +259,10 @@ COLOR t1, g1
 
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO back1
+PRINT "Is This readable [Y]es or [N]o : "
+answer = INPUT$(1)
+answer = UCASE$(answer)
+IF answer = "N" THEN GOTO back1
 back2:
 GOSUB background
 INPUT "Brackets  Background [From 0 to  7] : ", g2
@@ -274,10 +275,9 @@ PRINT "A";
 COLOR t2, g2
 PRINT "]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO back2
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO back2
 back3:
 GOSUB background
 INPUT "Inside Lines Background [From 0 to  7] : ", g
@@ -287,10 +287,9 @@ COLOR t, g
 
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO back3
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO back3
 RETURN
 
 inputscreen:
@@ -324,19 +323,18 @@ displays:
 CLS
 PRINT "Output display [A] Any Ansi BBS    [B] Wildcat 5-8 BBS  [C] PCboard BBS   "
 PRINT "Output Display [D] Synchronet BBS  [E] Mystic BBS                       : " 'which BBS display the user wants
-displaychoice$ = INPUT$(1)
-displaychoice$ = UCASE$(displaychoice$)
-IF displaychoice$ = "A" THEN display = "ansi": GOTO menu
-IF displaychoice$ = "B" THEN display = "wc8": GOTO menu ' select display coding by what the user types in
-IF displaychoice$ = "C" THEN display = "pcb": GOTO menu
-IF displaychoice$ = "D" THEN display = "synchro": GOTO menu
-IF displaychoice$ = "E" THEN display = "mystic": GOTO menu
+answer = UCASE$(INPUT$(1))
+IF answer = "A" THEN display = "ansi": GOTO menu
+IF answer = "B" THEN display = "wc8": GOTO menu ' select display coding by what the user types in
+IF answer = "C" THEN display = "pcb": GOTO menu
+IF answer = "D" THEN display = "synchro": GOTO menu
+IF answer = "E" THEN display = "mystic": GOTO menu
 GOTO displays
 startit:
 
 selector:
 IF pick = 1 THEN
-    horizontalines = "double": verticalines$ = "double"
+    horizontalines = "double": verticalines = "double"
     corner1 = CHR$(201)
     corner2 = CHR$(187) ' corner character for new corners of new box output
     corner3 = CHR$(188)
@@ -390,13 +388,7 @@ IF pick = 4 THEN
     verticalline = CHR$(179)
 END IF
 RETURN
-fixed:
-g1 = 2
-t1 = 14
-g2 = 4
-t2 = 13
-g = 7
-t = 15
+
 RETURN
 
 
@@ -408,7 +400,7 @@ RETURN
 
 menu:
 PRINT "[M]enu file or [D]isplay file : "
-answer$ = INPUT$(1)
+answer = UCASE$(INPUT$(1))
 answer = UCASE$(answer) ' ask the user what type of display they want, display file
 menuchoice = answer ' or menu file , gives two choices
 IF menuchoice = "M" OR menuchoice = "D" OR menuchoice = "" THEN GOTO fileit
@@ -420,6 +412,7 @@ END IF
 IF file = "" AND menuchoice = "M" THEN ' default file for menu files
     file = "main5"
 END IF
+
 
 
 
@@ -450,7 +443,7 @@ asciipromptmenu = "c:\display\bbsmenuascii\" + file7
 
 IF menuchoice = "D" THEN
     contlne = 0
-    GOSUB pick
+    GOSUB pick0
     GOSUB selector
     OPEN asciidisp FOR INPUT AS #1
 
@@ -477,9 +470,10 @@ END IF
 IF menuchoice = "M" THEN
 
     contlne = 0
-    GOSUB pick
+    GOSUB pick0
     GOSUB selector
     OPEN asciimenu FOR INPUT AS #1
+
     OPEN asciipromptmenu FOR INPUT AS #3
 
     IF display = "ansi" THEN
@@ -541,7 +535,7 @@ DO UNTIL EOF(1)
         IF display = "ansi" THEN
             GOSUB specialcharacters3
             GOSUB specialcharacters2
-            IF flag$ = "Y1" THEN
+            IF flag = "Y1" THEN
                 GOSUB colorchange
                 COLOR t1, g1
                 x = g1
@@ -569,7 +563,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y3" THEN
+            IF flag = "Y3" THEN
                 GOSUB colorchange
                 COLOR t, g
                 x = g
@@ -604,7 +598,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y2" THEN
+            IF flag = "Y2" THEN
                 GOSUB colorchange
                 x = g2
                 y = t2
@@ -618,7 +612,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y3" THEN
+            IF flag = "Y3" THEN
                 GOSUB colorchange
                 x = g
                 y = t
@@ -638,7 +632,7 @@ DO UNTIL EOF(1)
         IF display = "pcb" THEN
             GOSUB specialcharacters3
             GOSUB specialcharacters2
-            IF flag$ = "Y1" THEN
+            IF flag = "Y1" THEN
                 GOSUB colorchange
                 COLOR t1, g1
                 x = g1
@@ -652,7 +646,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y2" THEN
+            IF flag = "Y2" THEN
                 GOSUB colorchange
                 COLOR t2, g2
                 x = g2
@@ -666,7 +660,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y3" THEN
+            IF flag = "Y3" THEN
                 GOSUB colorchange
                 COLOR t, g
                 x = g
@@ -686,7 +680,7 @@ DO UNTIL EOF(1)
         IF display = "synchro" THEN
             GOSUB specialcharacters3
             GOSUB specialcharacters2
-            IF flag$ = "Y1" THEN
+            IF flag = "Y1" THEN
                 GOSUB colorchange
                 COLOR t1, g1
                 x = g1
@@ -700,7 +694,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y2" THEN
+            IF flag = "Y2" THEN
                 GOSUB colorchange
                 COLOR t2, g2
                 x = g2
@@ -714,7 +708,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y3" THEN
+            IF flag = "Y3" THEN
                 GOSUB colorchange
                 COLOR t, g
                 x = g
@@ -734,7 +728,7 @@ DO UNTIL EOF(1)
         IF display = "mystic" THEN
             GOSUB specialcharacters3
             GOSUB specialcharacters2
-            IF flag$ = "Y1" THEN
+            IF flag = "Y1" THEN
                 GOSUB colorchange
                 COLOR t1, g1
                 x = g1
@@ -748,7 +742,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y2" THEN
+            IF flag = "Y2" THEN
                 GOSUB colorchange
                 COLOR t2, g2
                 x = g2
@@ -762,7 +756,7 @@ DO UNTIL EOF(1)
                     PRINT b;
                 END IF
             END IF
-            IF flag$ = "Y3" THEN
+            IF flag = "Y3" THEN
                 GOSUB colorchange
                 COLOR t, g
                 x = g
@@ -802,8 +796,7 @@ CLOSE #3
 COLOR 7, 0
 PRINT
 PRINT " Create another screen ? [Defaults to [Y]es : "
-answer = INPUT$(1)
-answer = UCASE$(answer)
+answer = UCASE$(INPUT$(1))
 IF answer = "N" THEN
     GOTO finish
 ELSE
@@ -837,10 +830,10 @@ PRINT "on Facebook at many of the groups"
 PRINT "I am in , or email me at"
 PRINT "rcamp48@rogers.com"
 PRINT
-PRINT "Thank you for using BBS Menu Color Scheme Creator 13 RC3"
+PRINT "Thank you for using BBS Menu Color Scheme Creator 15 RC3"
 PRINT
 END
-pick:
+pick0:
 RANDOMIZE TIMER
 pick = INT(RND(1) * 4) + 1
 RETURN
@@ -914,93 +907,93 @@ IF display = "wc8" THEN
     IF y = 15 THEN foregroundcolorbbs = "F@"
 END IF
 IF display = "pcb" THEN
-    IF x = 0 THEN backgroundcolorpcb$ = "@X0"
-    IF x = 1 THEN backgroundcolorpcb$ = "@X1"
-    IF x = 2 THEN backgroundcolorpcb$ = "@X2"
-    IF x = 3 THEN backgroundcolorpcb$ = "@X3"
-    IF x = 4 THEN backgroundcolorpcb$ = "@X4"
-    IF x = 5 THEN backgroundcolorpcb$ = "@X5"
-    IF x = 6 THEN backgroundcolorpcb$ = "@X6"
-    IF x = 7 THEN backgroundcolorpcb$ = "@X7"
-    IF x = 8 THEN backgroundcolorpcb$ = "@X8"
-    IF x = 9 THEN backgroundcolorpcb$ = "@X9"
-    IF x = 10 THEN backgroundcolorpcb$ = "@XA"
-    IF x = 11 THEN backgroundcolorpcb$ = "@XB"
-    IF x = 12 THEN backgroundcolorpcb$ = "@XC"
-    IF x = 13 THEN backgroundcolorpcb$ = "@XD"
-    IF x = 14 THEN backgroundcolorpcb$ = "@XE"
-    IF x = 15 THEN backgroundcolorpcb$ = "@XF"
-    IF y = 0 THEN foregroundcolorpcb$ = "0@"
-    IF y = 1 THEN foregroundcolorpcb$ = "1@"
-    IF y = 2 THEN foregroundcolorpcb$ = "2@"
-    IF y = 3 THEN foregroundcolorpcb$ = "3@"
-    IF y = 4 THEN foregroundcolorpcb$ = "4@"
-    IF y = 5 THEN foregroundcolorpcb$ = "5@"
-    IF y = 6 THEN foregroundcolorpcb$ = "6@"
-    IF y = 7 THEN foregroundcolorpcb$ = "7@"
-    IF y = 8 THEN foregroundcolorpcb$ = "8@"
-    IF y = 9 THEN foregroundcolorpcb$ = "9@"
-    IF y = 10 THEN foregroundcolorpcb$ = "A@"
-    IF y = 11 THEN foregroundcolorpcb$ = "B@"
-    IF y = 12 THEN foregroundcolorpcb$ = "C@"
-    IF y = 13 THEN foregroundcolorpcb$ = "D@"
-    IF y = 14 THEN foregroundcolorpcb$ = "E@"
-    IF y = 15 THEN foregroundcolorpcb$ = "F@"
+    IF x = 0 THEN backgroundcolorpcb = "@X0"
+    IF x = 1 THEN backgroundcolorpcb = "@X1"
+    IF x = 2 THEN backgroundcolorpcb = "@X2"
+    IF x = 3 THEN backgroundcolorpcb = "@X3"
+    IF x = 4 THEN backgroundcolorpcb = "@X4"
+    IF x = 5 THEN backgroundcolorpcb = "@X5"
+    IF x = 6 THEN backgroundcolorpcb = "@X6"
+    IF x = 7 THEN backgroundcolorpcb = "@X7"
+    IF x = 8 THEN backgroundcolorpcb = "@X8"
+    IF x = 9 THEN backgroundcolorpcb = "@X9"
+    IF x = 10 THEN backgroundcolorpcb = "@XA"
+    IF x = 11 THEN backgroundcolorpcb = "@XB"
+    IF x = 12 THEN backgroundcolorpcb = "@XC"
+    IF x = 13 THEN backgroundcolorpcb = "@XD"
+    IF x = 14 THEN backgroundcolorpcb = "@XE"
+    IF x = 15 THEN backgroundcolorpcb = "@XF"
+    IF y = 0 THEN foregroundcolorpcb = "0@"
+    IF y = 1 THEN foregroundcolorpcb = "1@"
+    IF y = 2 THEN foregroundcolorpcb = "2@"
+    IF y = 3 THEN foregroundcolorpcb = "3@"
+    IF y = 4 THEN foregroundcolorpcb = "4@"
+    IF y = 5 THEN foregroundcolorpcb = "5@"
+    IF y = 6 THEN foregroundcolorpcb = "6@"
+    IF y = 7 THEN foregroundcolorpcb = "7@"
+    IF y = 8 THEN foregroundcolorpcb = "8@"
+    IF y = 9 THEN foregroundcolorpcb = "9@"
+    IF y = 10 THEN foregroundcolorpcb = "A@"
+    IF y = 11 THEN foregroundcolorpcb = "B@"
+    IF y = 12 THEN foregroundcolorpcb = "C@"
+    IF y = 13 THEN foregroundcolorpcb = "D@"
+    IF y = 14 THEN foregroundcolorpcb = "E@"
+    IF y = 15 THEN foregroundcolorpcb = "F@"
 
 END IF
 IF display = "synchro" THEN
-    IF x = 0 THEN backgroundcolorsyncro$ = CHR$(1) + "0"
-    IF x = 1 THEN backgroundcolorsyncro$ = CHR$(1) + "1"
-    IF x = 2 THEN backgroundcolorsyncro$ = CHR$(1) + "2"
-    IF x = 3 THEN backgroundcolorsyncro$ = CHR$(1) + "3"
-    IF x = 4 THEN backgroundcolorsyncro$ = CHR$(1) + "4"
-    IF x = 5 THEN backgroundcolorsyncro$ = CHR$(1) + "5"
-    IF x = 6 THEN backgroundcolorsyncro$ = CHR$(1) + "6"
-    IF x = 7 THEN backgroundcolorsyncro$ = CHR$(1) + "7"
-    IF y = 0 THEN foregroundcolorsyncro$ = "k"
-    IF y = 1 THEN foregroundcolorsyncro$ = "b"
-    IF y = 2 THEN foregroundcolorsyncro$ = "g"
-    IF y = 3 THEN foregroundcolorsyncro$ = "c"
-    IF y = 4 THEN foregroundcolorsyncro$ = "r"
-    IF y = 5 THEN foregroundcolorsyncro$ = "m"
-    IF y = 6 THEN foregroundcolorsyncro$ = "y"
-    IF y = 7 THEN foregroundcolorsyncro$ = "w"
+    IF x = 0 THEN backgroundcolorsynchro = CHR$(1) + "0"
+    IF x = 1 THEN backgroundcolorsynchro = CHR$(1) + "1"
+    IF x = 2 THEN backgroundcolorsynchro = CHR$(1) + "2"
+    IF x = 3 THEN backgroundcolorsynchro = CHR$(1) + "3"
+    IF x = 4 THEN backgroundcolorsynchro = CHR$(1) + "4"
+    IF x = 5 THEN backgroundcolorsynchro = CHR$(1) + "5"
+    IF x = 6 THEN backgroundcolorsynchro = CHR$(1) + "6"
+    IF x = 7 THEN backgroundcolorsynchro = CHR$(1) + "7"
+    IF y = 0 THEN foregroundcolorsynchro = "k"
+    IF y = 1 THEN foregroundcolorsynchro = "b"
+    IF y = 2 THEN foregroundcolorsynchro = "g"
+    IF y = 3 THEN foregroundcolorsynchro = "c"
+    IF y = 4 THEN foregroundcolorsynchro = "r"
+    IF y = 5 THEN foregroundcolorsynchro = "m"
+    IF y = 6 THEN foregroundcolorsynchro = "y"
+    IF y = 7 THEN foregroundcolorsynchro = "w"
 
 
 END IF
 IF display = "mystic" THEN
-    IF x = 0 THEN backgroundcolormystic$ = CHR$(254) + "16"
-    IF x = 1 THEN backgroundcolormystic$ = CHR$(254) + "17"
-    IF x = 2 THEN backgroundcolormystic$ = CHR$(254) + "18"
-    IF x = 3 THEN backgroundcolormystic$ = CHR$(254) + "19"
-    IF x = 4 THEN backgroundcolormystic$ = CHR$(254) + "20"
-    IF x = 5 THEN backgroundcolormystic$ = CHR$(254) + "21"
-    IF x = 6 THEN backgroundcolormystic$ = CHR$(254) + "22"
-    IF x = 7 THEN backgroundcolormystic$ = CHR$(254) + "23"
-    IF x = 8 THEN backgroundcolormystic$ = CHR$(254) + "24"
-    IF x = 9 THEN backgroundcolormystic$ = CHR$(254) + "25"
-    IF x = 10 THEN backgroundcolormystic$ = CHR$(254) + "26"
-    IF x = 11 THEN backgroundcolormystic$ = CHR$(254) + "27"
-    IF x = 12 THEN backgroundcolormystic$ = CHR$(254) + "28"
-    IF x = 13 THEN backgroundcolormystic$ = CHR$(254) + "29"
-    IF x = 14 THEN backgroundcolormystic$ = CHR$(254) + "30"
-    IF x = 15 THEN backgroundcolormystic$ = CHR$(254) + "31"
-    IF y = 0 THEN foregroundcolormystic$ = CHR$(254) + "00"
-    IF y = 1 THEN foregroundcolormystic$ = CHR$(254) + "01"
-    IF y = 2 THEN foregroundcolormystic$ = CHR$(254) + "02"
-    IF y = 3 THEN foregroundcolormystic$ = CHR$(254) + "03"
-    IF y = 4 THEN foregroundcolormystic$ = CHR$(254) + "04"
-    IF y = 5 THEN foregroundcolormystic$ = CHR$(254) + "05"
-    IF y = 6 THEN foregroundcolormystic$ = CHR$(254) + "06"
-    IF y = 7 THEN foregroundcolormystic$ = CHR$(254) + "07"
-    IF y = 8 THEN foregroundcolormystic$ = CHR$(254) + "08"
-    IF y = 9 THEN foregroundcolormystic$ = CHR$(254) + "09"
-    IF y = 10 THEN foregroundcolormystic$ = CHR$(254) + "10"
-    IF y = 11 THEN foregroundcolormystic$ = CHR$(254) + "11"
-    IF y = 12 THEN foregroundcolormystic$ = CHR$(254) + "12"
-    IF y = 13 THEN foregroundcolormystic$ = CHR$(254) + "13"
-    IF y = 14 THEN foregroundcolormystic$ = CHR$(254) + "14"
-    IF y = 15 THEN foregroundcolormystic$ = CHR$(254) + "15"
+    IF x = 0 THEN backgroundcolormystic = CHR$(254) + "16"
+    IF x = 1 THEN backgroundcolormystic = CHR$(254) + "17"
+    IF x = 2 THEN backgroundcolormystic = CHR$(254) + "18"
+    IF x = 3 THEN backgroundcolormystic = CHR$(254) + "19"
+    IF x = 4 THEN backgroundcolormystic = CHR$(254) + "20"
+    IF x = 5 THEN backgroundcolormystic = CHR$(254) + "21"
+    IF x = 6 THEN backgroundcolormystic = CHR$(254) + "22"
+    IF x = 7 THEN backgroundcolormystic = CHR$(254) + "23"
+    IF x = 8 THEN backgroundcolormystic = CHR$(254) + "24"
+    IF x = 9 THEN backgroundcolormystic = CHR$(254) + "25"
+    IF x = 10 THEN backgroundcolormystic = CHR$(254) + "26"
+    IF x = 11 THEN backgroundcolormystic = CHR$(254) + "27"
+    IF x = 12 THEN backgroundcolormystic = CHR$(254) + "28"
+    IF x = 13 THEN backgroundcolormystic = CHR$(254) + "29"
+    IF x = 14 THEN backgroundcolormystic = CHR$(254) + "30"
+    IF x = 15 THEN backgroundcolormystic = CHR$(254) + "31"
+    IF y = 0 THEN foregroundcolormystic = CHR$(254) + "00"
+    IF y = 1 THEN foregroundcolormystic = CHR$(254) + "01"
+    IF y = 2 THEN foregroundcolormystic = CHR$(254) + "02"
+    IF y = 3 THEN foregroundcolormystic = CHR$(254) + "03"
+    IF y = 4 THEN foregroundcolormystic = CHR$(254) + "04"
+    IF y = 5 THEN foregroundcolormystic = CHR$(254) + "05"
+    IF y = 6 THEN foregroundcolormystic = CHR$(254) + "06"
+    IF y = 7 THEN foregroundcolormystic = CHR$(254) + "07"
+    IF y = 8 THEN foregroundcolormystic = CHR$(254) + "08"
+    IF y = 9 THEN foregroundcolormystic = CHR$(254) + "09"
+    IF y = 10 THEN foregroundcolormystic = CHR$(254) + "10"
+    IF y = 11 THEN foregroundcolormystic = CHR$(254) + "11"
+    IF y = 12 THEN foregroundcolormystic = CHR$(254) + "12"
+    IF y = 13 THEN foregroundcolormystic = CHR$(254) + "13"
+    IF y = 14 THEN foregroundcolormystic = CHR$(254) + "14"
+    IF y = 15 THEN foregroundcolormystic = CHR$(254) + "15"
 END IF
 RETURN
 specialcharacters2:
@@ -1031,11 +1024,11 @@ END IF
 RETURN
 specialcharacters3:
 IF b = CHR$(94) OR b = CHR$(43) OR b = CHR$(37) OR b = CHR$(126) OR b = CHR$(45) OR b = CHR$(38) OR b = CHR$(35) OR b = CHR$(42) OR b = CHR$(33) OR b = CHR$(61) THEN
-    flag$ = "Y1"
+    flag = "Y1"
 ELSEIF b = CHR$(91) OR b = CHR$(93) THEN
-    flag$ = "Y2"
+    flag = "Y2"
 ELSE
-    flag$ = "Y3"
+    flag = "Y3"
 END IF
 RETURN
 
@@ -1047,15 +1040,15 @@ GOSUB load
 RETURN
 
 colorchange:
-IF flag$ = "Y1" THEN
+IF flag = "Y1" THEN
     g1 = g1
     t1 = t1
     colorchanges = 1
-ELSEIF flag$ = "Y2" THEN
+ELSEIF flag = "Y2" THEN
     g2 = g2
     t2 = t2
     colorchanges = 1
-ELSEIF flag$ = "Y3" THEN
+ELSEIF flag = "Y3" THEN
     g = g
     t = t
 
@@ -1091,136 +1084,133 @@ CLS
 PRINT
 PRINT "Please enter the color of your Background "
 PRINT
-PRINT "Black        is color code 0 "
-PRINT "Blue         is color code 1 "
-PRINT "Green        is color code 2 " ' ask for and show the various colors of
-PRINT "Cyan         is color code 3 " ' background codes.
-PRINT "Red          is color code 4 "
-PRINT "Magenta      is color code 5 "
-PRINT "Brown        is color code 6 "
-PRINT "White        is color code 7 "
-IF display = "syn" OR display = "ansi" THEN GOTO nex
-
-PRINT "Black        is color code 8 "
-PRINT "Blue         is color code 9 "
-PRINT "Green        is color code 10"
-PRINT "Cyan         is color code 11"
-PRINT "Red          is color code 12"
-PRINT "Magenta      is color code 13"
-PRINT "Yellow       is color code 14"
-PRINT "White        is color code 15"
-PRINT
-nex:
+PRINT "Black        is color code 0            Black is color code    8"
+PRINT "Blue         is color code 1            Blue is  color code    9"
+PRINT "Green        is color code 2            Green is color code   10"
+PRINT "Cyan         is color code 3            Cyan is  color code   11"
+PRINT "Red          is color code 4            Red  is  color code   12"
+PRINT "Magenta      is color code 5            Magenta is color code 13"
+PRINT "Brown        is color code 6            Yellow  is color code 14"
+PRINT "White        is color code 7            White   is colr code  15"
 PRINT
 PRINT "Don't worry, the program will translate from decimal to hex for this."
-PRINT "Make your Background selection from [0] to [7] for Syncronet and Ansi."
+PRINT "Make your Background selection from [0] to [7] for Syncronet Ansi."
 PRINT "And [0] to [15] for everything else"
 PRINT
 RETURN
 enteryourbackground:
 etry1:
 GOSUB background
-INPUT "Color # 1 Background [From 0 to  7] : ", color1background
-INPUT "Color # 1 Foreground [From 0 to 15] : ", color1foreground
+INPUT "Color # 1 of 8 -- Background [From 0 to  7] : ", color1background
+INPUT "Color # 1 of 8 -- Foreground [From 0 to 15] : ", color1foreground
 PRINT
 COLOR color1foreground, color1background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry1
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "Y" THEN GOTO etry2
+IF answer = "N" THEN GOTO etry1
+GOTO etry1
 etry2:
 GOSUB background
-INPUT "Color # 2 Background [From 0 to  7] : ", color2background
-INPUT "Color # 2 Foreground [From 0 to 15] : ", color2foreground
+INPUT "Color # 2 of 8 -- Background [From 0 to  7] : ", color2background
+INPUT "Color # 2 of 8 -- Foreground [From 0 to 15] : ", color2foreground
 PRINT
 COLOR color2foreground, color2background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry2
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "Y" THEN GOTO etry3
+IF answer = "N" THEN GOTO etry2
+GOTO etry2
 etry3:
 GOSUB background
-INPUT "Color # 3 Background [From 0 to  7] : ", color3background
-INPUT "Color # 3 Foreground [From 0 to 15] : ", color3foreground
+INPUT "Color # 3 of 8 -- Background [From 0 to  7] : ", color3background
+INPUT "Color # 3 of 8 -- Foreground [From 0 to 15] : ", color3foreground
 PRINT
 COLOR color3foreground, color3background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry3
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "Y" THEN GOTO etry4
+IF answer = "N" THEN GOTO etry3
+GOTO etry3
 etry4:
 GOSUB background
-INPUT "Color # 4 Background [From 0 to  7] : ", color4background
-INPUT "Color # 4 Foreground [From 0 to 15] : ", color4foreground
+INPUT "Color # 4 of 8 -- Background [From 0 to  7] : ", color4background
+INPUT "Color # 4 of 8 -- Foreground [From 0 to 15] : ", color4foreground
 PRINT
 COLOR color4foreground, color4background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry4
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "Y" THEN GOTO etry5
+IF answer = "N" THEN GOTO etry4
+GOTO etry4
 etry5:
 GOSUB background
-INPUT "Color # 5 Background [From 0 to  7] : ", color5background
-INPUT "Color # 5 Foreground [From 0 to 15] : ", color5foreground
+INPUT "Color # 5 of 8 -- Background [From 0 to  7] : ", color5background
+INPUT "Color # 5 of 8 -- Foreground [From 0 to 15] : ", color5foreground
 PRINT
 COLOR color5foreground, color5background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry5
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO etry5
+IF answer = "Y" THEN GOTO etry6
+GOTO etry5
 etry6:
 GOSUB background
-INPUT "Color # 6 Background [From 0 to  7] : ", color6background
-INPUT "Color # 6 Foreground [From 0 to 15] : ", color6foreground
+INPUT "Color # 6 of 8 -- Background [From 0 to  7] : ", color6background
+INPUT "Color # 6 of 8 -- Foreground [From 0 to 15] : ", color6foreground
 PRINT
 COLOR color6foreground, color6background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry6
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO etry6
+IF answer = "Y" THEN GOTO etry7
+GOTO etry6
 etry7:
 GOSUB background
-INPUT "Color # 7 Background [From 0 to  7] : ", color7background
-INPUT "Color # 7 Foreground [From 0 to 15] : ", color7foreground
+INPUT "Color # 7 of 8 -- Background [From 0 to  7] : ", color7background
+INPUT "Color # 7 of 8 -- Foreground [From 0 to 15] : ", color7foreground
 PRINT
 COLOR color7foreground, color7background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry7
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO etry7
+IF answer = "Y" THEN GOTO etry8
+GOTO etry7
 etry8:
 GOSUB background
-INPUT "Color # 8 Background [From 0 to  7] : ", color8background
-INPUT "Color # 8 Foreground [From 0 to 15] : ", color8foreground
+INPUT "Color # 8 of 8 -- Background [From 0 to  7] : ", color8background
+INPUT "Color # 8 of 8 -- Foreground [From 0 to 15] : ", color8foreground
 PRINT
 COLOR color8foreground, color8background
 PRINT "[------------------]";: COLOR 7, 0: COLOR 7, 0
 PRINT
-PRINT "Is This acceptable [Y]es or [N]o : "
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO etry8
+PRINT "Is This readable [Y]es or [N]o : "
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO etry8
+IF answer = "Y" THEN GOTO etry9
+GOTO etry8
+etry9:
 RETURN
 whatyouget:
 CLS
 PRINT
 COLOR 7, 0
 PRINT
-PRINT "This is what you get for colors [Is it still acceptable] [Y] or [N] : "
+PRINT "This is what you get for colors [Is it still readable] [Y] or [N] : "
 
 COLOR usercolorentry_t1, usercolorentry_g1
 PRINT "[------------------------------------------------------]"
@@ -1269,11 +1259,10 @@ PRINT "[------------------------------------------------------]"
 
 COLOR 7, 0
 PRINT
-PRINT "Acceptable ???? [Y]es or [N]o : "
+PRINT "readable ???? [Y]es or [N]o : "
 PRINT
-answer$ = INPUT$(1)
-answer$ = UCASE$(answer$)
-IF answer$ = "N" THEN GOTO inputscreen1
+answer = UCASE$(INPUT$(1))
+IF answer = "N" THEN GOTO inputscreen1
 GOSUB create
 RETURN
 
@@ -1311,17 +1300,17 @@ RETURN
 create:
 CLS
 PRINT
-answer = UCASE$(answer$)
+answer = UCASE$(INPUT$(1))
 IF answer$ = "N" THEN GOTO inputscreen
 PRINT
 PRINT
-INPUT "Enter Filename [No extender :  ", files$
+INPUT "Enter Filename [No extender :  ", filess
 PRINT
-files$ = files$ + ".dat"
-filename$ = "c:\display\data\" + files$
+filess = filess + ".dat"
+fnames = "c:\display\data\" + filess
 PRINT "Saving data............"
 PRINT
-OPEN filename$ FOR OUTPUT AS #4
+OPEN fname$ FOR OUTPUT AS #4
 PRINT #4, g1
 PRINT #4, t1
 PRINT #4, g2
@@ -1333,14 +1322,14 @@ RETURN
 load:
 CLS
 PRINT "Load Data File..........."
-INPUT "Enter Filename [No extender :  ", files$
+INPUT "Enter Filename [No extender :  ", filess
 PRINT
-files$ = files$ + ".dat"
-filename$ = "c:\display\data\" + files$
+filess = filess + ".dat"
+fnames = "c:\display\data\" + filess
 PRINT
 PRINT "Loading data..........."
 PRINT
-OPEN filename$ FOR INPUT AS #4
+OPEN fnames FOR INPUT AS #4
 INPUT #4, g1
 INPUT #4, t1
 INPUT #4, g2
